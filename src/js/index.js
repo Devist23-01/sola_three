@@ -1,6 +1,20 @@
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
+import starsTexture from '../img/stars.jpg';
+import sunTexture from '../img/sunmapthumb.jpg'
+import mercuryTexture from '../img/mercurymapthumb.jpg'
+import venusTexture from '../img/venusmapthumb.jpg'
+import earthTexture from '../img/earthmapthumb.jpg'
+import marsTexture from '../img/marsmapthumb.jpg'
+import jupiterTexture from '../img/jupitermapthumb.jpg'
+import saturnTexture from '../img/saturnmapthumb.jpg'
+import saturnRingTexture from '../img/Ring.png'
+import uranusTexture from '../img/uranusmapthumb.jpg'
+import uranusRingTexture from '../img/favpng_uranus-the-trooth-texture-mapping-planet-mykolaiv.png'
+import neptuneTexture from '../img/neptunemapthumb.jpg'
+import plutoTexture from '../img/plutomapthumb.jpg'
+
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
@@ -20,8 +34,24 @@ const camera = new THREE.PerspectiveCamera(
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 // Camera positioning
-camera.position.set(6, 8, 14);
+camera.position.set(-90, 140, 140);
 orbit.update();
+
+
+const ambientLight = new THREE.AmbientLight(0x333333);
+scene.add(ambientLight);
+
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+scene.background = cubeTextureLoader.load([
+    starsTexture,
+    starsTexture,
+    starsTexture,
+    starsTexture,
+    starsTexture,
+    starsTexture,
+])
+
+const textureLoader = new THREE.TextureLoader();
 
 // Sets a 12 by 12 gird helper
 const gridHelper = new THREE.GridHelper(12, 12);
