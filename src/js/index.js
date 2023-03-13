@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
 import starsTexture from '../img/stars.jpg';
-import sunTexture from '../img/sunmapthumb.jpg'
+import sunTexture from '../img/sunmapthumb.jpg';
 import mercuryTexture from '../img/mercurymapthumb.jpg'
 import venusTexture from '../img/venusmapthumb.jpg'
 import earthTexture from '../img/earthmapthumb.jpg'
@@ -14,6 +14,7 @@ import uranusTexture from '../img/uranusmapthumb.jpg'
 import uranusRingTexture from '../img/favpng_uranus-the-trooth-texture-mapping-planet-mykolaiv.png'
 import neptuneTexture from '../img/neptunemapthumb.jpg'
 import plutoTexture from '../img/plutomapthumb.jpg'
+
 
 const renderer = new THREE.WebGLRenderer({antialias: true});
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -52,6 +53,11 @@ scene.background = cubeTextureLoader.load([
 ])
 
 const textureLoader = new THREE.TextureLoader();
+const sunGeo = new THREE.SphereGeometry(16,30,30);
+const sunMat = new THREE.MeshBasicMaterial({map : textureLoader.load(sunTexture)});
+const sun = new THREE.Mesh(sunGeo,sunMat);
+scene.add(sun);
+
 
 // Sets a 12 by 12 gird helper
 const gridHelper = new THREE.GridHelper(12, 12);
