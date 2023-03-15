@@ -58,16 +58,17 @@ const sunMat = new THREE.MeshBasicMaterial({map : textureLoader.load(sunTexture)
 const sun = new THREE.Mesh(sunGeo,sunMat);
 scene.add(sun);
 
+const mercuryGeo = new THREE.SphereGeometry(3.2,30,30);
+const mercuryMat = new THREE.MeshStandardMaterial({map : textureLoader.load(mercuryTexture)});
+const mercury = new THREE.Mesh(mercuryGeo,mercuryMat);
+scene.add(mercury);
+mercury.position.x = 28;
 
-// Sets a 12 by 12 gird helper
-const gridHelper = new THREE.GridHelper(12, 12);
-scene.add(gridHelper);
-
-// Sets the x, y, and z axes with each having a length of 4
-const axesHelper = new THREE.AxesHelper(4);
-scene.add(axesHelper);
-
+const pointLight = new THREE.PointLight(0xFFFFFF,2, 300)
+scene.add(pointLight);
 function animate() {
+    sun.rotateY(0.004)
+    mercury.rotateY(0.004)
     renderer.render(scene, camera);
 }
 
